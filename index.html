@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Timber Lights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Container (mobile frame) -->
+  <div id="app">
+
+    <!-- 1. Welcome Screen -->
+    <section id="welcome-screen" class="screen active">
+      <div class="welcome-bg"></div>
+      <div class="ambient-glow"></div>
+      
+      <!-- Added Logo Top Left -->
+      <div class="home-header">
+        <img src="images/logo.png" alt="TTS Logo" class="home-logo" onerror="this.style.display='none'">
+      </div>
+
+      <div class="welcome-content">
+        <h1>Hello 👋<br>Welcome to<br><span class="brand-highlight">The Timber Lights</span> World</h1>
+        
+        <div class="social-links-home">
+          <a href="https://www.instagram.com/thetimberlights/" target="_blank" class="social-btn instagram-home"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61579409738961#" target="_blank" class="social-btn facebook-home"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+
+        <button id="btn-explore" class="primary-btn glow-btn">Explore Now</button>
+      </div>
+    </section>
+
+    <!-- 2. Brand Details Screen -->
+    <section id="brand-screen" class="screen">
+      <div class="brand-header">
+        <button class="icon-btn back-btn" data-target="welcome-screen"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2>About Brand</h2>
+      </div>
+      <div class="brand-content scrollable">
+        <div class="brand-card">
+          <div class="brand-logo-img">
+            <img src="images/logo.png" alt="TTS Logo" onerror="this.src='https://via.placeholder.com/80/1a1818/ff9900/?text=TTS'">
+          </div>
+          <h3>The Timber Lights</h3>
+          <p class="founder">Founded by <strong>Dhwanish Shah</strong></p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 93761 77250</span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>thetimberlights@gmail.com</span>
+            </div>
+            <div class="contact-item location">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Anikedhya Capitol 2, Mahalakshmi Five Cross Road, Opp. Pentagon Merlin, Paldi, Ahmedabad – 07</span>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.instagram.com/thetimberlights/" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61579409738961#" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+          </div>
+        </div>
+
+        <!-- Buttons safely spaced out at the bottom -->
+        <div class="brand-action-buttons">
+          <button id="btn-location" class="secondary-btn"><i class="fa-solid fa-map-location-dot"></i> Open Location Page</button>
+          <button id="btn-products" class="primary-btn glow-btn">View Products</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Location Screen -->
+    <section id="location-screen" class="screen">
+      <div class="detail-header">
+        <button class="icon-btn back-btn" data-target="brand-screen"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2>Our Location</h2>
+      </div>
+      <div class="location-body">
+        <div class="map-wrapper">
+          <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Anikedhya%20Capitol%202,%20Mahalakshmi%20Five%20Cross%20Road,%20Paldi,%20Ahmedabad&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+        </div>
+        <div class="location-info">
+          <h3><i class="fa-solid fa-location-dot" style="color:var(--primary-color);"></i> Store Address</h3>
+          <p>Anikedhya Capitol 2, Mahalakshmi Five Cross Road, Opp. Pentagon Merlin, Paldi, Ahmedabad – 07</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Product Listing Screen -->
+    <section id="products-screen" class="screen">
+      <div class="products-header">
+        <button class="icon-btn back-btn" data-target="brand-screen"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2>Our Collection</h2>
+      </div>
+      <div class="products-grid scrollable" id="productGrid">
+        <!-- Products injected via JS -->
+      </div>
+    </section>
+
+    <!-- 5. Product Detail Screen -->
+    <section id="detail-screen" class="screen">
+      <div class="detail-header">
+        <button class="icon-btn back-btn" data-target="products-screen"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="icon-btn fav-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      
+      <div class="product-showcase">
+        <div class="image-container" id="detailImageContainer">
+          <img src="" alt="Product" id="detailImage">
+          <div class="glow-effect" id="detailGlow"></div>
+        </div>
+
+        <div class="product-info-panel scrollable">
+          <div class="product-title-row">
+            <h2 id="detailTitle">Product Name</h2>
+          </div>
+          
+          <div class="light-controls">
+            <button id="btn-light-on" class="ctrl-btn"><i class="fa-solid fa-lightbulb"></i> Lamp ON</button>
+            <button id="btn-light-off" class="ctrl-btn active-ctrl"><i class="fa-regular fa-lightbulb"></i> Lamp OFF</button>
+          </div>
+
+          <p id="detailDesc">Short description of the product goes here.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
