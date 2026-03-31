@@ -21,8 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Bind Buttons
-  document.getElementById('btn-explore').addEventListener('click', () => navigateTo('brand-screen'));
-  document.getElementById('btn-products').addEventListener('click', () => navigateTo('products-screen'));
+  const btnContact = document.getElementById('btn-contact');
+  if(btnContact) btnContact.addEventListener('click', () => navigateTo('brand-screen'));
+
+  const btnHomeProducts = document.getElementById('btn-home-products');
+  if(btnHomeProducts) btnHomeProducts.addEventListener('click', () => navigateTo('products-screen'));
+
+  const btnProducts = document.getElementById('btn-products');
+  if(btnProducts) btnProducts.addEventListener('click', () => navigateTo('products-screen'));
 
   // Bind Location Map
   const btnLocation = document.getElementById('btn-location');
@@ -86,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set Image
     const detailImg = document.getElementById('detailImage');
     detailImg.src = product.img;
+    
     detailImg.onerror = function() {
       this.src = 'https://via.placeholder.com/400x500/1a1818/ff9900/?text=Image+Needed';
     };
@@ -98,22 +105,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnLightOn = document.getElementById('btn-light-on');
   const btnLightOff = document.getElementById('btn-light-off');
   const detailImg = document.getElementById('detailImage');
-  const detailGlow = document.getElementById('detailGlow');
 
-  btnLightOn.addEventListener('click', () => setLight(true));
-  btnLightOff.addEventListener('click', () => setLight(false));
+  if(btnLightOn) btnLightOn.addEventListener('click', () => setLight(true));
+  if(btnLightOff) btnLightOff.addEventListener('click', () => setLight(false));
 
   function setLight(isOn) {
     if (isOn) {
       detailImg.classList.add('light-on');
-      detailGlow.classList.add('active');
       btnLightOn.classList.add('active-on');
       btnLightOn.classList.remove('active-off');
       btnLightOff.classList.remove('active-off');
       btnLightOff.classList.add('ctrl-btn');
     } else {
       detailImg.classList.remove('light-on');
-      detailGlow.classList.remove('active');
       btnLightOn.classList.remove('active-on');
       btnLightOff.classList.add('active-off');
     }
