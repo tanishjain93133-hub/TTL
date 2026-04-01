@@ -31,23 +31,36 @@ body {
 
 #app {
   width: 100%;
-  max-width: 414px; /* iPhone Max width */
-  height: 896px; /* iPhone height */
-  max-height: 100vh;
+  min-height: 100vh;
   background-color: var(--bg-color);
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 50px rgba(255, 153, 0, 0.15);
-  border-radius: 40px; /* Looks like a phone frame */
-  border: 8px solid #222; /* Mock phone bezel */
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 480px) {
+/* Desktop/Tablet Optimization Layer */
+@media (min-width: 768px) {
+  body {
+    background-color: #050505;
+    padding: 40px 0;
+  }
+  
   #app {
-    max-width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    border: none;
+    max-width: 500px; /* Centered compact experience on desktop for focus, or full page? */
+    /* The user asked for it to be fully responsive for all device, but usually mobile apps look best in a container on desktop. However, to be "fully responsive" I should probably let it breath. Let's go with a centered card look for desktop to maintain the premium feel. */
+    margin: 0 auto;
+    height: auto;
+    min-height: 90vh;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 153, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  }
+}
+
+@media (min-width: 1200px) {
+  #app {
+    max-width: 600px;
   }
 }
 
@@ -415,10 +428,10 @@ body {
 /* 3. Products Screen */
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 15px;
   padding: 0 20px 40px;
-  overflow-y: auto;
+  overflow-y: visible; /* Let the parent handle scrolling */
 }
 
 .products-grid::-webkit-scrollbar { display: none; }
@@ -589,39 +602,52 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%;
+  gap: 20px;
 }
 
 .map-wrapper {
-  flex-grow: 1;
-  border-radius: 20px;
+  height: 350px; /* Fixed height for map area to prevent jumping */
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255, 153, 0, 0.2);
-  margin-bottom: 20px;
-  min-height: 250px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+  border: 1px solid rgba(255, 153, 0, 0.15);
+  position: relative;
+  background: #1a1818; /* Loader background */
 }
 
 .location-info {
-  background: rgba(26, 24, 24, 0.8);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 25px 20px;
+  background: rgba(26, 24, 24, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 30px 25px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .location-info h3 {
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 700;
   margin-bottom: 15px;
+  color: var(--primary-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .location-info p {
   color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 25px;
 }
+
+/* Animations for smoothness */
+.screen {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.screen::-webkit-scrollbar { display: none; }

@@ -104,22 +104,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Two Option Logic (Light ON / OFF)
   const btnLightOn = document.getElementById('btn-light-on');
   const btnLightOff = document.getElementById('btn-light-off');
-  const detailImg = document.getElementById('detailImage');
 
   if(btnLightOn) btnLightOn.addEventListener('click', () => setLight(true));
   if(btnLightOff) btnLightOff.addEventListener('click', () => setLight(false));
 
   function setLight(isOn) {
+    const detailImg = document.getElementById('detailImage');
+    const btnOn = document.getElementById('btn-light-on');
+    const btnOff = document.getElementById('btn-light-off');
+
     if (isOn) {
       detailImg.classList.add('light-on');
-      btnLightOn.classList.add('active-on');
-      btnLightOn.classList.remove('active-off');
-      btnLightOff.classList.remove('active-off');
-      btnLightOff.classList.add('ctrl-btn');
+      btnOn.classList.add('active-on');
+      btnOff.classList.remove('active-off');
     } else {
       detailImg.classList.remove('light-on');
-      btnLightOn.classList.remove('active-on');
-      btnLightOff.classList.add('active-off');
+      btnOn.classList.remove('active-on');
+      btnOff.classList.add('active-off');
     }
   }
 
