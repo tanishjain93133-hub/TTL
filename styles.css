@@ -23,10 +23,11 @@ body {
   background-color: #000;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Allow scrolling from the top */
   min-height: 100vh;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 #app {
@@ -34,33 +35,45 @@ body {
   min-height: 100vh;
   background-color: var(--bg-color);
   position: relative;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  overflow: visible; /* Ensure content contributes to document height */
 }
 
-/* Desktop/Tablet Optimization Layer */
+/* Tablet Optimization Layer (md) */
 @media (min-width: 768px) {
   body {
     background-color: #050505;
-    padding: 40px 0;
+    padding: 0; 
+    align-items: center; /* Center app on desktop */
   }
   
   #app {
-    max-width: 500px; /* Centered compact experience on desktop for focus, or full page? */
-    /* The user asked for it to be fully responsive for all device, but usually mobile apps look best in a container on desktop. However, to be "fully responsive" I should probably let it breath. Let's go with a centered card look for desktop to maintain the premium feel. */
-    margin: 0 auto;
+    max-width: 480px; /* Still keep it app-like but slightly wider */
+    margin: 40px auto;
+    min-height: 85vh;
     height: auto;
-    min-height: 90vh;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 153, 0, 0.1);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 153, 0, 0.15);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+  }
+
+  .welcome-content h1 {
+    font-size: 42px;
   }
 }
 
-@media (min-width: 1200px) {
+/* Desktop Optimization Layer (lg) */
+@media (min-width: 1024px) {
   #app {
-    max-width: 600px;
+    max-width: 500px;
+  }
+}
+
+/* Ultra-wide Adjustment */
+@media (min-width: 1440px) {
+  #app {
+    max-width: 540px;
   }
 }
 
@@ -115,23 +128,20 @@ body {
 
 /* Screens */
 .screen {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative; /* Change from absolute to relative to allow natural flow */
+  display: none; /* Hide by default */
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
+  transition: opacity 0.4s ease;
   flex-direction: column;
-  transform: translateY(20px) scale(0.98);
+  padding-bottom: 60px; /* Space at bottom for mobile safety */
 }
 
 .screen.active {
+  display: flex; /* Show active screen */
   opacity: 1;
   pointer-events: all;
-  transform: translateY(0) scale(1);
 }
 
 /* 1. Welcome Screen */
@@ -161,10 +171,10 @@ body {
 }
 
 .welcome-content h1 {
-  font-size: 38px;
+  font-size: clamp(28px, 8vw, 42px); /* Fluid typography */
   font-weight: 300;
-  line-height: 1.25;
-  margin-bottom: 20px;
+  line-height: 1.2;
+  margin-bottom: 24px;
 }
 
 .home-header {
@@ -429,9 +439,8 @@ body {
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 15px;
-  padding: 0 20px 40px;
-  overflow-y: visible; /* Let the parent handle scrolling */
+  gap: 16px;
+  padding: 0 24px 60px;
 }
 
 .products-grid::-webkit-scrollbar { display: none; }
