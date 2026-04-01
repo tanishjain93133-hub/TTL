@@ -1,0 +1,15 @@
+{
+  "name": "the-timber-lights",
+  "version": "1.0.0",
+  "description": "A modern interactive mobile app for The Timber Lights.",
+  "main": "app.js",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "author": "Dhwanish Shah",
+  "license": "ISC"
+}
